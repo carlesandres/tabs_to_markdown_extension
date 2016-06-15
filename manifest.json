@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "TabsToMarkdown",
+  "description": "Generate a markdown file with a list of your open tabs",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
