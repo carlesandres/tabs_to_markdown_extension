@@ -3,7 +3,7 @@
 
   "name": "TabsToMarkdown",
   "description": "Generate a markdown file with a list of your open tabs",
-  "version": "1.0",
+  "version": "1.2",
 
   "browser_action": {
     "default_icon": "icon.png",
