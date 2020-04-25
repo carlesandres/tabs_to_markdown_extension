@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "TabsToMarkdown",
-  "description": "Generate a markdown file with links to all your open tabs",
+  "description": "Generate a list with links to all your currently open tabs in Markdown format",
   "version": "1.3",
 
   "browser_action": {
