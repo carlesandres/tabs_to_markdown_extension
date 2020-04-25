@@ -1,5 +1,5 @@
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+function renderList(linkListHTMLString) {
+  document.getElementById('list').innerHTML = linkListHTMLString;
 }
 
 function allUrls(callback){
@@ -11,15 +11,23 @@ function allUrls(callback){
     var getMarkdownLink = function(tab){
       return '[' + tab.title + '](' + tab.url + ')';
     };
-    var urlList = tabs.map( getMarkdownLink ).join('\n');
-    renderStatus(urlList);
+
+    var markdown = tabs.map( getMarkdownLink ).join('\n');
+    var linkForTab = function(tab) {
+      return '<a href="' encodeURIComponent(tab.url) + '">' +
+        tab.title + '</a>';
+    }
+
+    var linkList = tabs.map(linkForTab).join('\n');
+
+    renderList(linkList);
 
     // try {
     //     document.execCommand('copy');
     //     const url = 'https:www.textmarkr.com/paste?title=Bookmarks&text=' + encodeURIComponent(urlList);
-    //     renderStatus(url);
+    //     renderList(url);
     // } catch (e) {
-    //     renderStatus(urlList);
+    //     renderList(urlList);
     //     console.log('Imposible to copy');
     // }
   });

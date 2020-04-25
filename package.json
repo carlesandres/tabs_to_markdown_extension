@@ -1,0 +1,20 @@
+{
+  "name": "tabs_to_markdown_extension",
+  "version": "1.0.0",
+  "description": "Generate a list with links to all  open tabs in Markdown",
+  "main": "index.js",
+  "repository": "https://github.com/carlesandres/tabs_to_markdown_extension",
+  "author": "Carles Andres <carlos.andres.c@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "zip": "rm -rf ./distribution && zip -r distribution/zipped.zip source/",
+    "run": "web-ext run --target chromium --source-dir ./distribution/"
+  },
+  "dependencies": {
+    "web-ext": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
