@@ -12,13 +12,22 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 12px;
       }
-      #status {
+
+      h1 {
+        background: lightblue;
+        margin: 0;
+        padding: 0.5em;
+        text-align: center;
+      }
+
+      #list {
         /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
         overflow: scroll;
-        max-width: 400px;
-        min-height: 200px;
+        width: 500px;
+        height: 200px;
+        border-bottom: 1px solid grey;
       }
     </style>
 
@@ -31,8 +40,9 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <h1>Your tabs as Markdown:</h1>
+    <h1>Your open tabs</h1>
     <div id="list"></div>
+    <h3 id="copy-to-clipboard" style="display: hidden">Links to these tabs have been copied to your clipboard as Markdown</h3>
     <img id="image-result" hidden>
   </body>
 </html>

@@ -1,6 +1,11 @@
-function renderList(linkListHTMLString) {
-  document.getElementById('list').innerHTML = linkListHTMLString;
-}
+const copyToClipboard = str => {
+  const el = document.createElement('textarea');
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+};
 
 function allUrls(callback){
   var queryInfo = {
@@ -8,28 +13,21 @@ function allUrls(callback){
   };
 
   chrome.tabs.query(queryInfo, function(tabs){
-    var getMarkdownLink = function(tab){
-      return '[' + tab.title + '](' + tab.url + ')';
-    };
+    var getMarkdownLink = tab => `[${tab.title}](${tab.url})`;
+    var markdown = tabs.map(getMarkdownLink).join('\n');
 
-    // var markdown = tabs.map( getMarkdownLink ).join('\n');
-    var linkForTab = function(tab) {
-      return '<a href="' + encodeURIComponent(tab.url) + '">' +
-        tab.title + '</a>';
+    var linkList = tabs.map(tab => `<li>${tab.title}</li>`).join('\n');
+    linkList = `<ul>${linkList}</ul>`;
+    document.getElementById('list').innerHTML = linkList;
+
+    const button = document.querySelector('#copy-to-clipboard');
+
+    try {
+      copyToClipboard(markdown);
+      button.style = "display:block";
+    } catch (e) {
+      button.style = "display:hidden";
     }
-
-    var linkList = tabs.map(linkForTab).join('\n');
-
-    renderList(linkList);
-
-    // try {
-    //     document.execCommand('copy');
-    //     const url = 'https:www.textmarkr.com/paste?title=Bookmarks&text=' + encodeURIComponent(urlList);
-    //     renderList(url);
-    // } catch (e) {
-    //     renderList(urlList);
-    //     console.log('Imposible to copy');
-    // }
   });
 }
 
