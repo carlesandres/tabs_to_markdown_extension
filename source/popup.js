@@ -12,9 +12,9 @@ function allUrls(callback){
       return '[' + tab.title + '](' + tab.url + ')';
     };
 
-    var markdown = tabs.map( getMarkdownLink ).join('\n');
+    // var markdown = tabs.map( getMarkdownLink ).join('\n');
     var linkForTab = function(tab) {
-      return '<a href="' encodeURIComponent(tab.url) + '">' +
+      return '<a href="' + encodeURIComponent(tab.url) + '">' +
         tab.title + '</a>';
     }
 
