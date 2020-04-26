@@ -7,18 +7,37 @@ const copyToClipboard = str => {
   document.body.removeChild(el);
 };
 
-function allUrls(callback){
-  var queryInfo = {
-    currentWindow: true
-  };
+const closeTab = tabId => chrome.tabs.remove(tabId);
+
+const makeTabElement = tab => {
+  return (
+  `<li>
+    <div class="title">${tab.title}</div>
+    <div class="actions"><button class="close" id="tab-${tab.id}">Close tab</button></div>
+    </li>`
+  );
+};
+
+const attachActionsToList = () => {
+  const closeButtons = document.querySelectorAll('#list button.close');
+  closeButtons.forEach( b => {
+    const id = parseInt(b.id.replace('tab-',''), 10);
+    b.onclick = () => closeTab(id)
+  });
+}
+
+function allUrls(){
+  const queryInfo = { currentWindow: true };
 
   chrome.tabs.query(queryInfo, function(tabs){
-    var getMarkdownLink = tab => `[${tab.title}](${tab.url})`;
-    var markdown = tabs.map(getMarkdownLink).join('\n');
+    const getMarkdownLink = tab => `[${tab.title}](${tab.url})`;
+    const markdown = tabs.map(getMarkdownLink).join('\n');
 
-    var linkList = tabs.map(tab => `<li>${tab.title}</li>`).join('\n');
+    let linkList = tabs.map(makeTabElement).join('\n');
     linkList = `<ul>${linkList}</ul>`;
     document.getElementById('list').innerHTML = linkList;
+
+    setTimeout( attachActionsToList, 0);
 
     const button = document.querySelector('#copy-to-clipboard');
 
