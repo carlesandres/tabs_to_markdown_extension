@@ -6,68 +6,9 @@
  -->
 <html>
   <head>
+
     <title>Tabs to Markdown</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 12px;
-        max-width: 500px;
-        max-height: 800px;
-        overflow: hidden;
-        margin: 0;
-      }
-
-      h1 {
-        background: lightblue;
-        margin: 0;
-        padding: 0.5em;
-        text-align: center;
-      }
-
-      ul {
-        width: 100%;
-        padding: 0;
-        overflow: hidden;
-      }
-
-      #list {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: scroll;
-        width: 100%;
-        min-height: 200px;
-        max-height: 600px;
-        border-bottom: 1px solid grey;
-      }
-
-      #list li {
-        display: flex;
-        margin: 0;
-        padding: 10px;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      #list li:nth-child(even) {
-        background: #ddd;
-      }
-
-      .title {
-        display: flex;
-        flex-grow: 0;
-      }
-
-      .actions {
-        flex-grow: 0;
-      }
-
-    </style>
-
+    <link href="main.css" rel="stylesheet">
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
@@ -78,6 +19,10 @@
   </head>
   <body>
     <h1>Your open tabs</h1>
+    <form class="filter-area">
+      <label for="filter">Filter:</label>
+      <input type="text" id="filter" autofocus></input>
+    </form>
     <div id="list"></div>
     <div id="copy-to-clipboard" style="display: hidden">
       <h3 style="display: hidden">Links to these tabs have been copied to your clipboard as Markdown</h3>
