@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 12px;
+  width: 500px;
+  max-width: 500px;
+  max-height: 800px;
+  overflow: hidden;
+  margin: 0;
+}
+
+h1 {
+  background: #333;
+  color: white;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#list {
+  /* avoid an excessively wide status text */
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  width: 100%;
+  min-height: 200px;
+  max-height: 600px;
+  border-bottom: 1px solid grey;
+}
+
+#list li {
+  display: flex;
+  margin: 0;
+  padding: 5px 10px;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid grey;
+  align-items: center;
+}
+
+#list li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+#list img {
+  width: 32px;
+  height: 32px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.title {
+  display: flex;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.actions {
+  width: 100px;
+}
+
+.actions button {
+  border: none;
+  background: antiquewhite;
+  padding: 5px;
+}
+
+.actions button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.filter-area {
+  padding: 10px;
+  background-color: #eee;
+}
