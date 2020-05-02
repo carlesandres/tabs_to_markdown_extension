@@ -23,12 +23,14 @@ const switchToTab = (event) => {
 
 const makeTabElement = (tab, index) => {
   return (
-    `<li
+    `<li>
+        <div class="tablink"
         data-pos=${index}
         data-window-id=${tab.windowId}
         data-tab-id=${tab.id}>
-        <img src="${tab.favIconUrl}" />
-        <div class="title">${tab.title}</div>
+          <img src="${tab.favIconUrl}" />
+          <div class="title">${tab.title}</div>
+        </div>
         <div class="actions">
         <button class="close"
           data-pos=${index}
@@ -47,7 +49,7 @@ const attachActionsToList = () => {
   const filter = document.getElementById('filter');
   filter.addEventListener('input', onUpdateFilter);
 
-  const listElements = document.querySelectorAll('#list li');
+  const listElements = document.querySelectorAll('#list .tablink');
   listElements.forEach( b => { b.onclick = switchToTab });
 }
 
