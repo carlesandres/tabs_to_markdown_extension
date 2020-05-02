@@ -3,8 +3,8 @@
 }
 
 body {
-  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-  font-size: 12px;
+  font-family: Arial, "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 14px;
   width: 500px;
   max-width: 500px;
   max-height: 800px;
@@ -23,6 +23,7 @@ h1 {
 ul {
   width: 100%;
   padding: 0;
+  margin-top: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -42,14 +43,23 @@ ul {
 #list li {
   display: flex;
   margin: 0;
-  padding: 5px 10px;
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid grey;
+  align-items: stretch;
+}
+
+#list .tablink {
+  padding: 5px 10px;
+  display: flex;
+  margin-right: 5px;
+  flex: 1;
+  justify-content: space-between;
+  overflow: hidden;
   align-items: center;
 }
 
-#list li:hover {
+#list .tablink:hover {
   background: #eee;
   cursor: pointer;
 }
@@ -57,32 +67,41 @@ ul {
 #list img {
   width: 32px;
   height: 32px;
-  border: 1px solid grey;
-  border-radius: 5px;
 }
 
 .title {
   display: flex;
   flex-grow: 1;
   padding: 0 10px;
+  overflow: hidden;
 }
 
 .actions {
-  width: 100px;
+  width: 60px;
+  text-align: left;
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
 }
 
 .actions button {
+  display: flex;
   border: none;
-  background: antiquewhite;
-  padding: 5px;
+  background: #444;
+  color: white;
+  margin: 5px 0;
+  padding: 5px 10px;
+  align-items: center;
+  border-radius: 5px;
 }
 
 .actions button:hover {
-  opacity: 0.5;
+  background: #777;
   cursor: pointer;
 }
 
 .filter-area {
-  padding: 10px;
+  padding: 20px;
+  font-size: 16px;
   background-color: #eee;
 }
