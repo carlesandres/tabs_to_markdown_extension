@@ -3,8 +3,8 @@
 }
 
 body {
-  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-  font-size: 12px;
+  font-family: Arial, "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 14px;
   width: 500px;
   max-width: 500px;
   max-height: 800px;
@@ -57,18 +57,20 @@ ul {
 #list img {
   width: 32px;
   height: 32px;
-  border: 1px solid grey;
-  border-radius: 5px;
 }
 
 .title {
   display: flex;
   flex-grow: 1;
   padding: 0 10px;
+  overflow: hidden;
 }
 
 .actions {
-  width: 100px;
+  width: 50px;
+  text-align: left;
+  display: flex;
+  flex-shrink: 0;
 }
 
 .actions button {
