@@ -42,7 +42,7 @@ const makeTabElement = (tab, index) => {
 
 let filterValue = '';
 
-const attachActionsToList = () => {
+const attachListeners = () => {
   const closeButtons = document.querySelectorAll('#list button.close');
   closeButtons.forEach( b => { b.onclick = closeTab });
 
@@ -51,6 +51,9 @@ const attachActionsToList = () => {
 
   const listElements = document.querySelectorAll('#list .tablink');
   listElements.forEach( b => { b.onclick = switchToTab });
+
+  const copyToClipBtn = document.querySelector('#copy-to-clipboard');
+  copyToClipBtn.addEventListener('click', copyLinksToClipboard);
 }
 
 const onUpdateFilter = function() {
@@ -59,6 +62,16 @@ const onUpdateFilter = function() {
 };
 
 chrome.tabs.onRemoved.addListener(populateList);
+
+function copyLinksToClipboard() {
+  const queryInfo = { currentWindow: true };
+  chrome.tabs.query(queryInfo, function(tabs){
+    const getMarkdownLink = tab => `[${tab.title}](${tab.url})`;
+    const markdown = tabs.map(getMarkdownLink).join('\n');
+    // TO-DO: Use try catch to show feedback
+    copyToClipboard(markdown);
+  });
+}
 
 function populateList(){
   const queryInfo = { currentWindow: true };
@@ -71,21 +84,12 @@ function populateList(){
     linkList = `<ul>${linkList}</ul>`;
     document.getElementById('list').innerHTML = linkList;
 
-    setTimeout( attachActionsToList, 0);
+
+    setTimeout( attachListeners, 0);
 
     const filter = document.getElementById('filter');
     filter.focus;
 
-    // const getMarkdownLink = tab => `[${tab.title}](${tab.url})`;
-    // const markdown = tabs.map(getMarkdownLink).join('\n');
-    // const button = document.querySelector('#copy-to-clipboard');
-    //
-    // try {
-    //   copyToClipboard(markdown);
-    //   button.style = "display:block";
-    // } catch (e) {
-    //   button.style = "display:hidden";
-    // }
   });
 }
 
