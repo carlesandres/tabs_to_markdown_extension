@@ -13,7 +13,8 @@ body {
 }
 
 h1 {
-  background: lightblue;
+  background: #333;
+  color: white;
   margin: 0;
   padding: 0.5em;
   text-align: center;
@@ -23,6 +24,8 @@ ul {
   width: 100%;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 #list {
@@ -42,24 +45,36 @@ ul {
   padding: 5px 10px;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid grey;
+  align-items: center;
 }
 
-#list li:nth-child(even) {
+#list li:hover {
   background: #eee;
+  cursor: pointer;
+}
+
+#list img {
+  width: 32px;
+  height: 32px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
 .title {
   display: flex;
-  flex-grow: 0;
+  flex-grow: 1;
+  padding: 0 10px;
 }
 
 .actions {
-  flex-grow: 0;
+  width: 100px;
 }
 
 .actions button {
   border: none;
   background: antiquewhite;
+  padding: 5px;
 }
 
 .actions button:hover {

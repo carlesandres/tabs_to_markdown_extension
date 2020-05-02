@@ -7,16 +7,34 @@ const copyToClipboard = str => {
   document.body.removeChild(el);
 };
 
-const closeTab = tabId => {
+const closeTab = event => {
+  event.stopPropagation();
+  const tabId = parseInt(event.currentTarget.id.replace('tab-',''), 10);
   chrome.tabs.remove(tabId);
 }
 
-const makeTabElement = tab => {
+const switchToTab = (event) => {
+  const tabData = event.currentTarget.dataset;
+  const { windowId, pos } = tabData
+  const parsedPos = parseInt(pos, 10);
+  const parseWindowId = parseInt(windowId, 10);
+  chrome.tabs.highlight({tabs: parsedPos, windowId: parseWindowId});
+}
+
+const makeTabElement = (tab, index) => {
   return (
-  `<li>
-    <div class="title">${tab.title}</div>
-    <div class="actions"><button class="close" id="tab-${tab.id}">Close</button></div>
-    </li>`
+    `<li
+        data-pos=${index}
+        data-window-id=${tab.windowId}
+        data-tab-id=${tab.id}>
+        <img src="${tab.favIconUrl}" />
+        <div class="title">${tab.title}</div>
+        <div class="actions">
+        <button class="close"
+          data-pos=${index}
+          data-window-id=${tab.windowId} id="tab-${tab.id}">Close</button>
+        </div>
+      </li>`
   );
 };
 
@@ -24,13 +42,13 @@ let filterValue = '';
 
 const attachActionsToList = () => {
   const closeButtons = document.querySelectorAll('#list button.close');
-  closeButtons.forEach( b => {
-    const id = parseInt(b.id.replace('tab-',''), 10);
-    b.onclick = () => closeTab(id)
-  });
+  closeButtons.forEach( b => { b.onclick = closeTab });
 
   const filter = document.getElementById('filter');
   filter.addEventListener('input', onUpdateFilter);
+
+  const listElements = document.querySelectorAll('#list li');
+  listElements.forEach( b => { b.onclick = switchToTab });
 }
 
 const onUpdateFilter = function() {
