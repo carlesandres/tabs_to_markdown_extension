@@ -4,5 +4,6 @@ Session.vim
 zipped.zip
 yarn.lock
 distribution
+size-plugin.json
 
 .env
