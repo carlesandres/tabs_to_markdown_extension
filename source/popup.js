@@ -21,6 +21,13 @@ const switchToTab = (event) => {
   chrome.tabs.highlight({tabs: parsedPos, windowId: parseWindowId});
 }
 
+const openTextmarkr = () => {
+  const date = (new Date()).toJSON();
+  const title = encodeURIComponent(`Bookmarks ${date}`);
+  const options = { url: `https://www.textmarkr.com/new?title=${title}` };
+  chrome.tabs.create(options);
+}
+
 const makeTabElement = (tab, index) => {
   return (
     `<li>
@@ -54,6 +61,9 @@ const attachListeners = () => {
 
   const copyToClipBtn = document.querySelector('#copy-to-clipboard');
   copyToClipBtn.addEventListener('click', copyLinksToClipboard);
+
+  const openTxBtx = document.querySelector('#open-textmarkr');
+  openTxBtx.addEventListener('click', openTextmarkr);
 }
 
 const onUpdateFilter = function() {
@@ -84,12 +94,10 @@ function populateList(){
     linkList = `<ul>${linkList}</ul>`;
     document.getElementById('list').innerHTML = linkList;
 
-
     setTimeout( attachListeners, 0);
 
     const filter = document.getElementById('filter');
     filter.focus;
-
   });
 }
 
