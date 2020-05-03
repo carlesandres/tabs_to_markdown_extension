@@ -4,3 +4,5 @@ Session.vim
 zipped.zip
 yarn.lock
 distribution
+
+.env
