@@ -14,7 +14,6 @@ const closeTab = event => {
   console.log('tabData', tabData);
   const parsedTabId = parseInt(tabId, 10);
   chrome.tabs.remove(parsedTabId);
-  // chrome.tabs.remove(parsedTabId);
 }
 
 const switchToTab = (event) => {
@@ -92,8 +91,8 @@ function populateList(){
   const queryInfo = { currentWindow: true };
 
   chrome.tabs.query(queryInfo, function(tabs){
-
-    const filteredTabs = tabs.filter(tab => !filterValue || tab.title.match(filterValue));
+    const actualFilter = (filterValue || '').toLowerCase().trim();
+    const filteredTabs = tabs.filter(tab => !filterValue || (tab.title || '').toLowerCase().match(actualFilter));
 
     let linkList = filteredTabs.map(makeTabElement).join('\n');
     linkList = `<ul>${linkList}</ul>`;
