@@ -37,7 +37,7 @@ ul {
   width: 100%;
   min-height: 200px;
   max-height: 600px;
-  border-bottom: 1px solid grey;
+  /* border-bottom: 1px solid lightgrey; */
 }
 
 #list li {
@@ -45,7 +45,7 @@ ul {
   margin: 0;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgrey;
   align-items: stretch;
 }
 
@@ -60,7 +60,7 @@ ul {
 }
 
 #list .tablink:hover {
-  background: #eee;
+  background: lavender;
   cursor: pointer;
 }
 
@@ -104,4 +104,12 @@ ul {
   padding: 20px;
   font-size: 16px;
   background-color: #eee;
+  border-bottom: 1px solid lightgrey;
+}
+
+.footer {
+  display: flex;
+  padding: 20px;
+  background: #333;
+  color: white;
 }
