@@ -9,16 +9,20 @@ const copyToClipboard = str => {
 
 const closeTab = event => {
   event.stopPropagation();
-  const tabId = parseInt(event.currentTarget.id.replace('tab-',''), 10);
-  chrome.tabs.remove(tabId);
+  const tabData = event.currentTarget.dataset;
+  const { tabId } = tabData
+  console.log('tabData', tabData);
+  const parsedTabId = parseInt(tabId, 10);
+  chrome.tabs.remove(parsedTabId);
+  // chrome.tabs.remove(parsedTabId);
 }
 
 const switchToTab = (event) => {
   const tabData = event.currentTarget.dataset;
   const { windowId, pos } = tabData
-  const parsedPos = parseInt(pos, 10);
+  const parsedTabId = parseInt(pos, 10);
   const parseWindowId = parseInt(windowId, 10);
-  chrome.tabs.highlight({tabs: parsedPos, windowId: parseWindowId});
+  chrome.tabs.highlight({tabs: parsedTabId, windowId: parseWindowId});
 }
 
 const openTextmarkr = () => {
@@ -28,11 +32,11 @@ const openTextmarkr = () => {
   chrome.tabs.create(options);
 }
 
-const makeTabElement = (tab, index) => {
+const makeTabElement = tab => {
   return (
     `<li>
         <div class="tablink"
-        data-pos=${index}
+        data-pos=${tab.index}
         data-window-id=${tab.windowId}
         data-tab-id=${tab.id}>
           <img src="${tab.favIconUrl}" />
@@ -40,8 +44,9 @@ const makeTabElement = (tab, index) => {
         </div>
         <div class="actions">
         <button class="close"
-          data-pos=${index}
-          data-window-id=${tab.windowId} id="tab-${tab.id}">Close</button>
+          data-pos=${tab.index}
+          data-window-id=${tab.windowId}
+          data-tab-id=${tab.id}>Close</button>
         </div>
       </li>`
   );

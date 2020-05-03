@@ -3,7 +3,6 @@
   "name": "TabsToMarkdown",
   "description": "List all your current tabs and copy them as markdown",
   "version": "1.4",
-  "default_locale": "en",
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
