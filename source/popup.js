@@ -45,7 +45,7 @@ const makeTabElement = tab => {
         <button class="close"
           data-pos=${tab.index}
           data-window-id=${tab.windowId}
-          data-tab-id=${tab.id}>Close</button>
+          data-tab-id=${tab.id}>X</button>
         </div>
       </li>`
   );
@@ -66,8 +66,8 @@ const attachListeners = () => {
   const copyToClipBtn = document.querySelector('#copy-to-clipboard');
   copyToClipBtn.addEventListener('click', copyLinksToClipboard);
 
-  const openTxBtx = document.querySelector('#open-textmarkr');
-  openTxBtx.addEventListener('click', openTextmarkr);
+  const openTxBtx = document.querySelector('#open-mineral');
+  openTxBtx.addEventListener('click', openMineral);
 }
 
 const onUpdateFilter = function() {
