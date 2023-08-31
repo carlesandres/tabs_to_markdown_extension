@@ -33,7 +33,7 @@ ul {
   /* avoid an excessively wide status text */
   white-space: pre;
   text-overflow: ellipsis;
-  overflow: scroll;
+  overflow: hidden;
   width: 100%;
   min-height: 200px;
   max-height: 600px;
