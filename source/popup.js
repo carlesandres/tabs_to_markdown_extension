@@ -65,9 +65,6 @@ const attachListeners = () => {
 
   const copyToClipBtn = document.querySelector('#copy-to-clipboard');
   copyToClipBtn.addEventListener('click', copyLinksToClipboard);
-
-  const openTxBtx = document.querySelector('#open-mineral');
-  openTxBtx.addEventListener('click', openMineral);
 }
 
 const onUpdateFilter = function() {
